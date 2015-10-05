@@ -78,7 +78,7 @@ Sauce Labs has plugins for all the major CI tools:
 
 Use our [Platform Configurator][8], to quickly create your desired capabilities (with the configurations of your choice) that can be plugged into selenium scripts. 
 
-[8]: https://docs.saucelabs.com/reference/platforms-configurator/#/
+[8]: https://docs.saucelabs.com/reference/platforms-configurator/
 
 It's a good practice to store the generated code for your desired caps in a ***configuration file or database***. This enables you to:
 - Initiate a test by calling the desired capabilities from this file instead of hard coding them within your test. 
