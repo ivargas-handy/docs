@@ -174,7 +174,7 @@ First install py.test:
 ```
 pip install selenium sauceclient pytest pytest-xdist 
 ```
-Now, let's use the [platform configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) to add two platforms that we want to test on. Replace "desired_cap" in our example script above with an array of configs like so:
+Now, let's use the [platform configurator](https://docs.saucelabs.com/reference/platforms-configurator/) to add two platforms that we want to test on. Replace "desired_cap" in our example script above with an array of configs like so:
 
 ```python
 browsers = [{
@@ -270,7 +270,7 @@ First, install nose:
 pip install selenium sauceclient nose==1.1.0
 ```
 
-Now, let's use the [platform configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) to add two platforms that we want to test on. Replace "desired_cap" in our example script above with an array of configs like so:
+Now, let's use the [platform configurator](https://docs.saucelabs.com/reference/platforms-configurator/) to add two platforms that we want to test on. Replace "desired_cap" in our example script above with an array of configs like so:
 
 ```python
 browsers = [{

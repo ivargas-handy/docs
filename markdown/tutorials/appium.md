@@ -34,7 +34,7 @@ Getting started with Appium on Sauce Labs is really easy. As long as you are fam
    - [Mobile Hybrid Application](#mobile-hybrid-application) 
 2. Write your mobile application tests using:
    - The [Appium](http://appium.io/slate/en/master/?python#appium-client-libraries) client library for the language of your choice.
-3. Use the [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) to obtain the  correct desired capabilities for your test.
+3. Use the [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/) to obtain the  correct desired capabilities for your test.
 4. Point the driver address to use the Sauce Labs cloud:
    - `http://SAUCE_USERNAME:SAUCE_ACCESS_KEY@ondemand.saucelabs.com:80/wd/hub`
 5. Run your test and find the result in your [Sauce Labs test page](https://saucelabs.com/tests)
@@ -101,7 +101,7 @@ This type of application is part mobile native app and part mobile web app. Just
 
 ## Setting Desired Capabilities for Mobile Tests
 
-The desired capabilities are a set of keys and values that will be sent to the Appium server running in the Sauce Labs cloud. These keys and values tell the Appium server the specifications of the automated test that you will be running. Using our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) you can easily determine the correct desired capabilities for the programming language of your choice.
+The desired capabilities are a set of keys and values that will be sent to the Appium server running in the Sauce Labs cloud. These keys and values tell the Appium server the specifications of the automated test that you will be running. Using our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/) you can easily determine the correct desired capabilities for the programming language of your choice.
 
 Here is a list of the main desired capabilities that you will be using for your mobile tests:
 
@@ -118,7 +118,7 @@ The mobile operating system platform that will be used (e.g iOS or Android).
 The mobile operating system version that will be used (e.g 8.0, 7.1, 4.0, 5.0, etc.).
 
 - **appiumVersion** (optional):
-The version of the Appium driver that will be used. It is recommended to specify the latest Appium version which is the one suggested by the [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/). If not specified the test will run against the default Appium version.
+The version of the Appium driver that will be used. It is recommended to specify the latest Appium version which is the one suggested by the [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/). If not specified the test will run against the default Appium version.
 
 - **app** (only for mobile native application or mobile hybrid application tests):
 The path to a .apk or .zip file containing the app to test. This could be the location of your app in the [Temporary Sauce Storage](https://docs.saucelabs.com/reference/rest-api/#temporary-storage) (e.g sauce-storage:myapp.zip) or the URL to a remote location where your app is located (e.g http://myappurl.zip). This capability is not required for Android if you specify the **appPackage** and **appActivity** capabilities.
@@ -145,7 +145,7 @@ For more desired capabilities read the [Appium Server Capabilities](http://appiu
 
 For your Android emulator test you can request a regular Android emulator by using the desired capability `"deviceName":"Android Emulator"`. But if instead you are interested in using an Android emulator that looks and feels like a certain Android phone or tablet (e.g Google Nexus 7 HD Emulator, Samsung Galaxy S4, Google Nexus 7C, etc) then instead of `"deviceName":"Android Emulator"` you need to specify the corresponding Android emulator skin (e.g `"deviceName":"Samsung Galaxy S4 Emulator"`).
 
-Each Android emulator skins will have a different configuration depending on the phone or table that it is trying to emulate. For instance all the skins have different resolutions, screen dimensions, pixel densities, memory, etc. To get a list of the available Android emulator skins for the different Android emulator versions use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/).
+Each Android emulator skins will have a different configuration depending on the phone or table that it is trying to emulate. For instance all the skins have different resolutions, screen dimensions, pixel densities, memory, etc. To get a list of the available Android emulator skins for the different Android emulator versions use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/).
 
 ## Viewing my Appium tests on Sauce Labs
 
@@ -189,7 +189,7 @@ For more information, feel free to visit the resources listed below:
 
 - **How can I test Android tablets?**
 
-The best way to test on different Android emulators screen sizes is by using the different [Android Emulator Skins](#android-emulator-skins) . For instance, if you use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) you'll see the available skins for the different Android versions (e.g Google Nexus 7 HD, LG Nexus 4, Samsung Galaxy Nexus, Samsung Galaxy S3, etc). Some of these skins are tablets, for example the Google Nexus 7C is a tablet which has a very large resolution and very high density. 
+The best way to test on different Android emulators screen sizes is by using the different [Android Emulator Skins](#android-emulator-skins) . For instance, if you use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/) you'll see the available skins for the different Android versions (e.g Google Nexus 7 HD, LG Nexus 4, Samsung Galaxy Nexus, Samsung Galaxy S3, etc). Some of these skins are tablets, for example the Google Nexus 7C is a tablet which has a very large resolution and very high density. 
 
 - **How can I run manual tests for my mobile native app or mobile hybrid app?**
 
@@ -203,7 +203,7 @@ Android Emulators have software buttons and a hardware keyboard. In a regular An
 
 For older versions of Android Appium might not be supported. For instance, Appium is only supported in Android versions 4.4 or later for [Mobile Web Application](#mobile-web-application) tests, and Android versions 2.3, 4.0 and later for [Mobile Native Application](#mobile-native-application) and [Mobile Hybrid Application](#mobile-hybrid-application) tests.
 
-For those versions in which Appium is not supported you can request an emulator driven by Webdriver + Selendroid. All you need to do is use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) and select **Selenium** for the API instead of Appium.
+For those versions in which Appium is not supported you can request an emulator driven by Webdriver + Selendroid. All you need to do is use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/) and select **Selenium** for the API instead of Appium.
 
 In the Sauce Labs test you will notice that the top of the emulator says "AndroidDriver Webview App". In addition, you will notice that you will get a "Selenium Log" tab which has the output of the Selendroid driver. 
 
@@ -213,7 +213,7 @@ With an emulator driven by Webdriver + Selendroid you will be able to test [Mobi
 
 For older versions of iOS Appium might not be supported. For instance, Appium is supported in iOS versions 6.1 and later. For earlier versions of iOS the tool or driver used to drive your mobile applications automated test is called iWebdriver. 
 
-To obtain a simulator driven by iWebdriver use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) and select **Selenium** for the API instead of Appium. With an emulator driven by iWebdriver you will be able to test [Mobile Web Application](#mobile-web-application) only. In addition, in the Sauce Labs test you will notice a "Selenium Log" tab which has the output of iWebdriver. 
+To obtain a simulator driven by iWebdriver use our [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator/) and select **Selenium** for the API instead of Appium. With an emulator driven by iWebdriver you will be able to test [Mobile Web Application](#mobile-web-application) only. In addition, in the Sauce Labs test you will notice a "Selenium Log" tab which has the output of iWebdriver. 
 
 - **What mobile web browsers can I automate in the Android emulator?**
 
