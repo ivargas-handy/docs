@@ -113,7 +113,7 @@ Now that your test is set up to run in the Sauce cloud, you need to define the p
 caps = { :platform => "Mac OS X 10.9", :browserName => "Chrome", :version => "31" }
 ```
 
-You can manually enter the values you want for `:platform`, `:browsername`, and `:version`, or you can use the handy [Sauce Labs Platform Configurator](https://docs.saucelabs.com/reference/platforms-configurator/#/) to generate the `caps` values for any combination of platform, browser, and browser version. 
+You can manually enter the values you want for `:platform`, `:browsername`, and `:version`, or you can use the handy [Platforms Configurator](https://docs.saucelabs.com/reference/platforms-configurator) to generate the `caps` values for any combination of platform, browser, and browser version. 
 
 
 ## Running Tests Against Local Applications
