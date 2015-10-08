@@ -10,7 +10,7 @@
 
 [Jenkins](https://jenkins-ci.org/) is the most popular CI tool used by our customers. To make integrating with Jenkins even easier, we developed the Sauce Jenkins Plugin. It is __not necessary__ to use the Sauce Jenkins Plugin to integrate Sauce and Jenkins, however, it does do several handy things for you:
 
-1. Provides a user interface that lets you set environment variables on the Jenkins server that can be used in your tests (e.g., platform configurations or your Sauce username and access key)
+1. Provides a user interface that lets you populate environment variables on the Jenkins server that can be used in your tests (e.g., platform configurations or your Sauce username and access key)
 2. Automatically launches Sauce Connect
 3. Handles reporting between Jenkins and Sauce
 
@@ -77,9 +77,9 @@ This will open up a section called __Sauce Labs Options__. At the top you will s
 #### Advanced Options for Sauce Connect
 Immediately below the __Sauce Labs Options__ section you will see a section called __Sauce Connect Advanced Options__. Click ```Advanced...``` to reveal extra fields in which you can input advanced options. 
 
-Here you can input the [Sauce Connect command line options](https://docs.saucelabs.com/reference/sauce-connect/#command-line-options) that you would like applied to all Jenkins projects. 
+Here you can input the [Sauce Connect command line options](https://docs.saucelabs.com/reference/sauce-connect/#command-line-options) that you would like applied to __this__ project. 
 
-Alternatively, you can configure globally available advanced options for Sauce Connect that will be available on all projects. 
+Alternatively, you can configure globally available advanced options for Sauce Connect that will be available on __all__ projects. 
 
 Immediately below the fields where you input your Sauce Username and API Access Key is the ```Sauce Connect Options``` field. Here you can input the [Sauce Connect command line options](https://docs.saucelabs.com/reference/sauce-connect/#command-line-options) that you would like applied to all Jenkins projects. 
 
@@ -93,7 +93,7 @@ The Sauce Jenkins plugin comes bundled with the latest version of Sauce Connect,
 You can change the location where the plugin extracts Sauce Connect by specifying a directory location in the __Sauce Connect Working Directory__ field. This can be done on a per-project basis under __Sauce Connect Advanced Options__ or for all projects under __Sauce Support__ in your Jenkins configuration.
 
 ## Setting Environment Variables
-The next feature that the Sauce Jenkins Plugin provides is a way to set environment variables on the Jenkins server which contain details that you want to reference in your tests.  This makes it easy for you to change the browsers and operating systems that your tests run against without requiring you to change your test code each time.
+The next feature that the Sauce Jenkins Plugin provides is a way to populate environment variables on the Jenkins server which contain details that you want to reference in your tests.  This makes it easy for you to change the browsers and operating systems that your tests run against without requiring you to change your test code each time.
 
 __Note:__ Good testing practice suggests you reference environment variables to access desired capabilities rather than hardcoding them into your tests.
 
@@ -169,6 +169,18 @@ The values for the SELENIUM_HOST and SELENIUM_PORT environment variables can be 
 
 By default, the plugin will use the authentication credentials that we specified in the Sauce Credentials section at the beginning of this tutorial. However, this can be overriden in a test by enabling the __Override default authentication__ checkbox and specifying values in the Username and Access key fields. 
 
+#### Jenkins Build Number
+
+The Jenkins plugin also allows you to send build information back to the Sauce Dashboard. All you have to do is set the 'build' capability to the value of the `JENKINS_BUILD_NUMBER` environment variable. For example in psuedo-code:
+
+```
+desiredCapabilities.setBrowserName(System.getenv("JENKINS_BUILD_NUMBER"));
+```
+
+This will ensure that the Jenkins build number is stored when the job is first run.
+
+Setting this information in your test will provide you an easy way to filter and identify tests run for specific builds within your [Sauce dashboard](https://saucelabs.com/beta/dashboard).
+
 ## Making use of multiple browsers    
  
 One of the great features of running your Selenium tests with Sauce Labs is that you can easily update your tests to run against multiple browsers in parallel.  The Jenkins plugin provides a few different ways you can achieve this.
@@ -218,19 +230,9 @@ When you click __Build with parameters__, you will be presented with a list of t
 ![parameterized browsers](https://raw.githubusercontent.com/rossrowe/docs/master/images/ci-integrations/jenkins/parameterized-browsers.png)
 
 
-## Reporting Between Sauce and Jenkins
-The Jenkins plugin automatically handles reporting between Sauce and Jenkins. All you have to do is set the 'build' capability to the value of the `JENKINS_BUILD_NUMBER` environment variable. For example in psuedo-code:
+## Embedded Sauce Reports
 
-```
-desiredCapabilities.setBrowserName(System.getenv("JENKINS_BUILD_NUMBER"));
-```
-
-This will ensure that the Jenkins build number is stored when the job is first run.
-
-Setting this information in your test will:
-
-1. Provide you an easy way to filter and identify tests run for specific builds within your [Sauce dashboard](https://saucelabs.com/beta/dashboard).
-2. Allows the plugin to present links to the Sauce jobs that were run in the context of the Jenkins project, allowing you to easily view the job information and navigate to their details.
+The Jenkins plugin makes reporting between Sauce and Jenkins simple.
 
 For instance, the plugin will present links to the Sauce jobs executed as part of the build on the Jenkins build details page.
 
@@ -240,18 +242,16 @@ Clicking on these links will display the job details, where you can view the com
 
 ![build result](https://docs.saucelabs.com/images/ci-integrations/jenkins/sauce-report.d8ff5f97.png)
 
-##Marking Tests Pass/Fail
-The Sauce Jenkins Plugin also supports marking the Sauce jobs as passed or failed.  
+To enable these embedded reports, first add a __post-build action__ and enable ```Run Sauce Labs Test Publisher```.
 
-This feature requires the Jenkins build to be configured to parse test result files. To do this first got to __Post-build Actions__ at the bottom of the configuration page and click __Add a post-build action__. Select ```Publish JUnit test result report```.
+Next, you will need to output the following line to your for each test that is run using Sauce Labs:
 
-Next, add a second __post-build action__ and select ```Run Sauce Labs Test Publisher```. 
+```
+SauceOnDemandSessionID=YOUR_SESSION_ID job-name=YOUR_JOB_NAME
+```
 
-Once this is done, the plugin performs the following logic when attempting to match Sauce jobs with the test results:
+where YOUR_SESSION_ID is the SeleniumRC/WebDriver session id and YOUR_JOB_NAME is the name of the test being executed. 
 
-`if the Sauce job name equals the full name of the test`
-`or if the Sauce job name contains the test name`
-`or if the full name of the test contains the Sauce job name (matching whole words only)`
-`then we have a match`                  
+## JUnit Reports
 
-If the plugin finds a test result which matches the Sauce job, then it will update the pass/fail status of the Sauce job based on the test result which will show up in your Sauce [dashboard](https://saucelabs.com/beta/dashboard).
+The plugin also supports embedding the Sauce report within the JUnit test result report. To do this simply go to __Post-build Actions__ at the bottom of the configuration page and click __Add a post-build action__. Select ```Publish JUnit test result report```.
