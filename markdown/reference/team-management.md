@@ -12,7 +12,7 @@ Sauce Labs offers both Enterprise and Subscription plans that provide you with d
 
 ### How Your Plan Minutes Are Used
 
-Individual accounts within a team utilize the minutes from the root parent account. This way, all team members are able to use the same pool of minutes even if they are spread across different teams. Usage allocation for subaccounts is tied to the master account settings: if the main account is set to disallow tests when out of minutes, will also be unable to run tests when the main account runs out of minutes. If the master account is set to run into overages once the set number of minutes has been exceeded, the subaccount will also run into overages.
+Individual accounts within a team utilize the minutes from the root parent account. This way, all team members are able to use the same pool of minutes even if they are spread across different teams. Usage allocation for subaccounts is tied to the master account settings: if the main account is set to disallow tests when out of minutes, the subaccount will also be unable to run tests when the main account runs out of minutes. If the master account is set to run into overages once the set number of minutes has been exceeded, the subaccount will also run into overages.
 
 ### Viewing Plan Details
 
